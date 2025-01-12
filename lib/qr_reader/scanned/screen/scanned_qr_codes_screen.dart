@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wadual/config/custom_theme.dart';
-import '../providers/qr_code_reader_provider.dart';
+import '../../../providers/qr_code_reader_provider.dart';
 
 class ScannedQRCodesScreen extends ConsumerWidget {
   @override

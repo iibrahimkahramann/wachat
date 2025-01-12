@@ -137,7 +137,7 @@ class MyAppState extends State<MyApp> {
 
 //         if (isPremium) {
 //           print("Premium özellikler etkinleştirildi.");
-//           Navigator.pushReplacementNamed(context, '/home');
+//           GoRouter.of(context).go('/home');
 //         } else {
 //           print("Premium erişim seviyesi etkinleştirilmedi.");
 //         }

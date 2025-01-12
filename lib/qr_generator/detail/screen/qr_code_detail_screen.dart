@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../config/custom_theme.dart';
+import '../../../config/custom_theme.dart';
 
 class QRCodeDetailScreen extends StatelessWidget {
   final String qrCode; // QR kodunu saklamak için bir değişken

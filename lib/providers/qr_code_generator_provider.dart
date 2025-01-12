@@ -3,29 +3,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class QRCodeNotifier extends StateNotifier<List<String>> {
   QRCodeNotifier() : super([]) {
-    _loadQRcodes(); // Uygulama başlatıldığında QR kodlarını yükle
+    _loadQRcodes();
   }
 
   void addQRCode(String code) {
-    state = [...state, code]; // Yeni QR kodunu ekle
-    _saveQRcodes(); // QR kodlarını kaydet
+    state = [...state, code];
+    _saveQRcodes();
   }
 
   Future<void> _loadQRcodes() async {
     final prefs = await SharedPreferences.getInstance();
     final List<String>? savedQRcodes = prefs.getStringList('qrCodes');
     if (savedQRcodes != null) {
-      state = savedQRcodes; // Kaydedilen QR kodlarını duruma ata
+      state = savedQRcodes;
     }
   }
 
   Future<void> _saveQRcodes() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList('qrCodes', state); // QR kodlarını kaydet
+    await prefs.setStringList('qrCodes', state);
   }
 
   String? getLastQRCode() {
-    return state.isNotEmpty ? state.last : null; // Son QR kodunu döndür
+    return state.isNotEmpty ? state.last : null;
   }
 }
 

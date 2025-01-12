@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import '../config/custom_theme.dart';
-import '../providers/qr_code_generator_provider.dart';
+import '../../../config/custom_theme.dart';
+import '../../../providers/qr_code_generator_provider.dart';
+import '../controller/qr_generator_controller.dart';
 
 class QRGeneratorScreen extends ConsumerWidget {
   @override
@@ -11,14 +12,9 @@ class QRGeneratorScreen extends ConsumerWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final lastQRCode = ref.watch(qrCodeProvider.notifier).getLastQRCode();
-    final TextEditingController _controller = TextEditingController();
+    final TextEditingController controller = TextEditingController();
 
-    void _generateQRCode() {
-      if (_controller.text.isNotEmpty) {
-        ref.read(qrCodeProvider.notifier).addQRCode(_controller.text);
-        _controller.clear();
-      }
-    }
+    generateQRCode(controller, ref);
 
     return Scaffold(
       appBar: AppBar(
@@ -49,7 +45,7 @@ class QRGeneratorScreen extends ConsumerWidget {
         child: Column(
           children: [
             TextField(
-              controller: _controller,
+              controller: controller,
               decoration: InputDecoration(
                 labelText: 'Enter Text',
                 labelStyle: TextStyle(
@@ -67,7 +63,7 @@ class QRGeneratorScreen extends ConsumerWidget {
             SizedBox(height: height * 0.02),
             GestureDetector(
               onTap: () {
-                _generateQRCode();
+                generateQRCode(controller, ref);
               },
               child: Container(
                 width: width * 0.95,

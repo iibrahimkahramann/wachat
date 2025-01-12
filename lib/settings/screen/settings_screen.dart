@@ -4,7 +4,7 @@ import 'package:wadual/widgets/custom_appbar.dart';
 import 'package:wadual/widgets/custom_navbar.dart';
 import 'package:url_launcher/link.dart';
 
-import '../config/custom_theme.dart';
+import '../../config/custom_theme.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

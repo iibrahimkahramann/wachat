@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wadual/screen/emoji_screen.dart';
-import 'package:wadual/screen/private_note_screen.dart';
-import 'package:wadual/screen/sticker_screen.dart';
-import '../screen/home_screen.dart';
-import '../screen/private_browser.dart';
-import '../screen/qr_code_detail_screen.dart';
-import '../screen/qr_code_list_screen.dart';
-import '../screen/qr_reader_screen.dart';
-import '../screen/qr_generator_screen.dart';
-import '../screen/scanned_qr_codes_screen.dart';
-import '../screen/settings_screen.dart';
-import '../screen/note_list_screen.dart';
-import '../screen/note_detail_screen.dart';
-import '../screen/splash_screen.dart';
+import 'package:wadual/emoji/screen/emoji_screen.dart';
+import 'package:wadual/note/note/screen/private_note_screen.dart';
+import 'package:wadual/sticker/screen/sticker_screen.dart';
+import '../home/screen/home_screen.dart';
+import '../private_browser/screen/private_browser.dart';
+import '../qr_generator/detail/screen/qr_code_detail_screen.dart';
+import '../qr_generator/list/screen/qr_code_list_screen.dart';
+import '../qr_reader/reader/screen/qr_reader_screen.dart';
+import '../qr_generator/generator/screen/qr_generator_screen.dart';
+import '../qr_reader/scanned/screen/scanned_qr_codes_screen.dart';
+import '../settings/screen/settings_screen.dart';
+import '../note/list/screen/note_list_screen.dart';
+import '../note/detail/screen/note_detail_screen.dart';
+import '../splash/screen/splash_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 

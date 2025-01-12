@@ -15,7 +15,6 @@ class _PrivateBrowserScreenState extends State<PrivateBrowserScreen> {
   void initState() {
     super.initState();
 
-    // WebViewController'ı yapılandır
     _controller = WebViewController()
       ..setJavaScriptMode(
           JavaScriptMode.unrestricted) // JavaScript'i etkinleştir

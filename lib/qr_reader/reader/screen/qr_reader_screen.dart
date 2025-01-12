@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../config/custom_theme.dart';
-import '../providers/qr_code_reader_provider.dart';
+import '../../../config/custom_theme.dart';
+import '../../../providers/qr_code_reader_provider.dart';
 
 class QRReaderScreen extends ConsumerWidget {
   @override

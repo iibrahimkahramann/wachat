@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wadual/widgets/custom_appbar.dart';
 import 'package:wadual/widgets/custom_navbar.dart';
 
-import '../config/custom_theme.dart';
+import '../../config/custom_theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

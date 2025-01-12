@@ -22,21 +22,16 @@ final List<String> stickerPaths = [
   'assets/stickers/sticker15.gif',
 ];
 
-// Sticker'ı kopyalamak için geçici dosya oluşturma fonksiyonu
 Future<void> shareSticker(String assetPath, BuildContext context) async {
-  // Uygulamanın geçici dizinini al
   final directory = await getTemporaryDirectory();
   final filePath = '${directory.path}/sticker.gif';
 
-  // GIF'i asset'ten okuma
   final byteData = await rootBundle.load(assetPath);
   final bytes = byteData.buffer.asUint8List();
 
-  // GIF'i geçici dosyaya yazma
   final file = File(filePath);
   await file.writeAsBytes(bytes);
 
-  // GIF dosyasını paylaşma
   try {
     final file = XFile(filePath);
     await Share.shareXFiles([file], text: 'Stickerınızı paylaşın!');

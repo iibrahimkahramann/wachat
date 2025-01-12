@@ -1,44 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../config/custom_theme.dart';
+import '../../../providers/note_provider.dart';
 
-import '../config/custom_theme.dart';
-import '../providers/note_provider.dart';
+class NoteDetailScreen extends ConsumerWidget {
+  final int noteIndex; // Güncellenecek notun indeksi
 
-class PrivateNoteScreen extends ConsumerWidget {
-  const PrivateNoteScreen({super.key});
+  NoteDetailScreen({required this.noteIndex}); // Yapıcı metod
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final TextEditingController _titleController = TextEditingController();
-    final TextEditingController _noteController = TextEditingController();
-    String _title = '';
-    String _note = '';
+    final note = ref.watch(noteProvider)[noteIndex]; // Notu al
+    final TextEditingController _titleController =
+        TextEditingController(text: note.title);
+    final TextEditingController _textController =
+        TextEditingController(text: note.text);
 
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => GoRouter.of(context).go('/home'),
+          onPressed: () => GoRouter.of(context).go('/note-list'),
         ),
         title: Padding(
           padding:
               EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.17),
           child: Text(
-            'Private Note',
+            'Note Detail',
             style: CustomTheme.textTheme(context)
                 .bodyLarge
                 ?.copyWith(color: Colors.black),
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.list, color: Colors.black),
-            onPressed: () => GoRouter.of(context).go('/note-list'),
-          ),
-        ],
         backgroundColor: Colors.grey[300],
       ),
       body: Padding(
@@ -49,46 +45,42 @@ class PrivateNoteScreen extends ConsumerWidget {
             TextField(
               controller: _titleController,
               decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                hintText: 'Not Başlığını buraya yazın...',
-                hintStyle: CustomTheme.textTheme(context)
-                    .bodyMedium
-                    ?.copyWith(color: Colors.grey[400]),
-              ),
-              onChanged: (value) {
-                _title = value;
-              },
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  hintText: 'Not Başlığını güncelleyin...',
+                  hintStyle: CustomTheme.textTheme(context).bodySmall),
             ),
             SizedBox(height: height * 0.02),
             TextField(
-              controller: _noteController,
+              controller: _textController,
               maxLines: 4,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                hintText: 'Notunuzu buraya yazın...',
+                hintText: 'Not metnini güncelleyin...',
                 hintStyle: CustomTheme.textTheme(context)
                     .bodyMedium
                     ?.copyWith(color: Colors.grey[400]),
               ),
-              onChanged: (value) {
-                _note = value;
-              },
             ),
             SizedBox(height: height * 0.02),
             GestureDetector(
-              onTap: () async {
-                if (_title.isNotEmpty && _note.isNotEmpty) {
-                  await ref.read(noteProvider.notifier).addNote(_title, _note);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Notunuz kaydedildi!')),
-                  );
-                  _titleController.clear();
-                  _noteController.clear();
-                }
+              onTap: () {
+                // Notu güncelle
+                ref
+                    .read(noteProvider.notifier)
+                    .deleteNote(noteIndex); // Önce mevcut notu sil
+                ref.read(noteProvider.notifier).addNote(
+                      _titleController.text,
+                      _textController.text,
+                    );
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: Text('Not güncellendi!')), // Güncelleme mesajı
+                );
+                context.go('/note-list'); // Not listesine geri dön
               },
               child: Container(
                 width: width * 0.95,
@@ -99,7 +91,7 @@ class PrivateNoteScreen extends ConsumerWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Notu Kaydet',
+                    'Notu Güncelle',
                     style: CustomTheme.textTheme(context)
                         .bodyMedium
                         ?.copyWith(color: Colors.white),

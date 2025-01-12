@@ -9,7 +9,7 @@ class QRCodeNotifier extends StateNotifier<Map<String, dynamic>> {
           "isCameraActive": false,
           "scannedCodes": []
         }) {
-    _loadScannedCodes(); // Uygulama başlatıldığında kaydedilmiş kodları yükle
+    _loadScannedCodes();
   }
 
   Future<void> _loadScannedCodes() async {
@@ -31,7 +31,7 @@ class QRCodeNotifier extends StateNotifier<Map<String, dynamic>> {
     if (!updatedCodes.contains(code)) {
       updatedCodes.add(code);
       state = {...state, "scannedCodes": updatedCodes};
-      _saveScannedCodes(); // Her eklemede kaydet
+      _saveScannedCodes();
     }
   }
 
@@ -39,14 +39,11 @@ class QRCodeNotifier extends StateNotifier<Map<String, dynamic>> {
     final updatedCodes = List<String>.from(state["scannedCodes"] ?? []);
     updatedCodes.remove(code);
     state = {...state, "scannedCodes": updatedCodes};
-    _saveScannedCodes(); // Her silmede kaydet
+    _saveScannedCodes();
   }
 
   void toggleCamera() {
-    state = {
-      ...state,
-      "isCameraActive": !state["isCameraActive"]
-    }; // Kameranın durumunu değiştir
+    state = {...state, "isCameraActive": !state["isCameraActive"]};
   }
 }
 
