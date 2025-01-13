@@ -15,8 +15,9 @@ class ScannedQRCodesScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => GoRouter.of(context).go('/home'),
+          icon: Image.asset('assets/icons/chevron-left.png',
+              width: width * 0.06, color: Colors.black),
+          onPressed: () => GoRouter.of(context).go('/qr-reader'),
         ),
         title: Padding(
           padding: EdgeInsets.only(left: width * 0.1),

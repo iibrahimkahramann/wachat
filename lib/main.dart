@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wadual/config/custom_theme.dart';
 import 'package:wadual/config/router.dart';
+import 'package:wadual/init/initialize.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +15,8 @@ void main() async {
   // await AppTrackingTransparency.requestTrackingAuthorization();
 
   await EasyLocalization.ensureInitialized();
+
+  await Init.instance.init();
 
   runApp(
     EasyLocalization(

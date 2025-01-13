@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 
 class CustomTheme {
   static TextTheme textTheme(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return TextTheme(
       bodyLarge: TextStyle(
-        fontSize: 20,
+        fontSize: width * 0.049,
         fontWeight: FontWeight.bold,
         color: Colors.black,
         fontFamily: 'Poppins',
       ),
       bodyMedium: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
+        fontSize: width * 0.040,
+        fontWeight: FontWeight.bold,
         color: Colors.black,
-        fontFamily: 'Poppins',
+        fontFamily: '',
       ),
       bodySmall: TextStyle(
-        fontSize: 12,
+        fontSize: width * 0.030,
         fontWeight: FontWeight.bold,
         color: Colors.black,
         fontFamily: 'Poppins',

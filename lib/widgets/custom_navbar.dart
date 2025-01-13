@@ -16,26 +16,26 @@ class CustomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home_rounded,
-            size: width * 0.07,
+          icon: Image.asset(
+            'assets/icons/home.png',
+            width: width * 0.06,
           ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.settings_sharp,
-            size: width * 0.07,
+          icon: Image.asset(
+            'assets/icons/setting.png',
+            width: width * 0.06,
           ),
           label: 'Settings',
         ),
       ],
       currentIndex: _calculateSelectedIndex(currentLocation),
-      selectedItemColor: Colors.green,
+      selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
       onTap: (index) => _onItemTapped(index, context),
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.white, // Changed background color to white
+      backgroundColor: Colors.white,
     );
   }
 

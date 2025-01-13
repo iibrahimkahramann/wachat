@@ -17,7 +17,8 @@ class QRReaderScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Image.asset('assets/icons/chevron-left.png',
+              width: width * 0.06, color: Colors.black),
           onPressed: () => GoRouter.of(context).go('/home'),
         ),
         title: Padding(
@@ -29,6 +30,16 @@ class QRReaderScreen extends ConsumerWidget {
                 ?.copyWith(color: Colors.black),
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 5),
+            child: IconButton(
+              icon: Image.asset('assets/icons/folder.png',
+                  width: width * 0.06, color: Colors.black),
+              onPressed: () => GoRouter.of(context).go('/scanned-qr-codes'),
+            ),
+          ),
+        ],
         backgroundColor: Colors.grey[300],
       ),
       body: Padding(
@@ -80,30 +91,6 @@ class QRReaderScreen extends ConsumerWidget {
                 child: Center(
                   child: Text(
                     'QR Kodu Okut',
-                    style: CustomTheme.textTheme(context)
-                        .bodyMedium
-                        ?.copyWith(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: height * 0.025,
-            ),
-            GestureDetector(
-              onTap: () {
-                GoRouter.of(context).go('/scanned-qr-codes');
-              },
-              child: Container(
-                width: width * 0.95,
-                height: height * 0.07,
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Center(
-                  child: Text(
-                    'Okutulmuş QR Kodları Göster',
                     style: CustomTheme.textTheme(context)
                         .bodyMedium
                         ?.copyWith(color: Colors.white),

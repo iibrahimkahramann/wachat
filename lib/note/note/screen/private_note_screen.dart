@@ -20,7 +20,8 @@ class PrivateNoteScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Image.asset('assets/icons/chevron-left.png',
+              width: width * 0.06, color: Colors.black),
           onPressed: () => GoRouter.of(context).go('/home'),
         ),
         title: Padding(
@@ -34,9 +35,13 @@ class PrivateNoteScreen extends ConsumerWidget {
           ),
         ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.list, color: Colors.black),
-            onPressed: () => GoRouter.of(context).go('/note-list'),
+          Padding(
+            padding: const EdgeInsets.only(right: 5),
+            child: IconButton(
+              icon: Image.asset('assets/icons/folder.png',
+                  width: width * 0.06, color: Colors.black),
+              onPressed: () => GoRouter.of(context).go('/note-list'),
+            ),
           ),
         ],
         backgroundColor: Colors.grey[300],

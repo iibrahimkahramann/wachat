@@ -22,7 +22,8 @@ class NoteDetailScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Image.asset('assets/icons/chevron-left.png',
+              width: width * 0.06, color: Colors.black),
           onPressed: () => GoRouter.of(context).go('/note-list'),
         ),
         title: Padding(

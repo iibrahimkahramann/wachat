@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wadual/emoji/screen/emoji_screen.dart';
 import 'package:wadual/note/note/screen/private_note_screen.dart';
 import 'package:wadual/sticker/screen/sticker_screen.dart';
+import 'package:wadual/wachat/screen/wachat_screen.dart';
 import '../home/screen/home_screen.dart';
 import '../onboarding/screen/onboarding_screen.dart';
 import '../private_browser/screen/private_browser.dart';
@@ -112,6 +113,14 @@ final router = GoRouter(
       name: 'onboarding',
       pageBuilder: (context, state) =>
           NoTransitionPage(child: OnboardingScreen()),
+    ),
+    GoRoute(
+      path: '/wachat',
+      name: 'wachat',
+      pageBuilder: (context, state) => NoTransitionPage(
+          child: WachatScreen(
+        url: 'https://web.whatsapp.com/en',
+      )),
     ),
   ],
 );

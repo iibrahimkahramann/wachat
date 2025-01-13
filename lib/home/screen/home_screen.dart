@@ -21,40 +21,43 @@ class HomeScreen extends StatelessWidget {
               width * 0.041, height * 0.01, width * 0.041, 0),
           child: Column(
             children: [
-              Container(
-                width: width * 0.95,
-                height: height * 0.18,
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(left: width * 0.12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/wa_chat.png',
-                        width: width * 0.17,
-                      ),
-                      SizedBox(
-                        width: width * 0.05,
-                      ),
-                      Text(
-                        'WA 2nd Chat',
-                        style: TextStyle(
-                            fontSize: CustomTheme.textTheme(context)
-                                .bodyLarge!
-                                .fontSize,
-                            fontFamily: CustomTheme.textTheme(context)
-                                .bodyLarge!
-                                .fontFamily,
-                            fontWeight: CustomTheme.textTheme(context)
-                                .bodyLarge!
-                                .fontWeight,
-                            color: Colors.black),
-                      ),
-                    ],
+              GestureDetector(
+                onTap: () => context.go('/wachat'),
+                child: Container(
+                  width: width * 0.95,
+                  height: height * 0.18,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: width * 0.12),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/images/wa_chat.png',
+                          width: width * 0.17,
+                        ),
+                        SizedBox(
+                          width: width * 0.05,
+                        ),
+                        Text(
+                          'WA 2nd Chat',
+                          style: TextStyle(
+                              fontSize: CustomTheme.textTheme(context)
+                                  .bodyLarge!
+                                  .fontSize,
+                              fontFamily: CustomTheme.textTheme(context)
+                                  .bodyLarge!
+                                  .fontFamily,
+                              fontWeight: CustomTheme.textTheme(context)
+                                  .bodyLarge!
+                                  .fontWeight,
+                              color: Colors.black),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
