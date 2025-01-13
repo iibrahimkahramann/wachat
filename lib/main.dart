@@ -101,7 +101,7 @@ class MyAppState extends State<MyApp> {
     // }
 
     return MaterialApp.router(
-      title: 'InFetch',
+      title: 'Wachat',
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.themeData(context),
       routerConfig: router,

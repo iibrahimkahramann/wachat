@@ -19,7 +19,7 @@ class ScannedQRCodesScreen extends ConsumerWidget {
           onPressed: () => GoRouter.of(context).go('/home'),
         ),
         title: Padding(
-          padding: EdgeInsets.only(left: width * 0.15),
+          padding: EdgeInsets.only(left: width * 0.1),
           child: Text(
             'Scanned QR Codes',
             style: CustomTheme.textTheme(context)
@@ -33,7 +33,14 @@ class ScannedQRCodesScreen extends ConsumerWidget {
         padding: EdgeInsets.fromLTRB(
             width * 0.041, height * 0.025, width * 0.041, 0),
         child: scannedCodes.isEmpty
-            ? Center(child: Text('No scanned QR codes yet.'))
+            ? Center(
+                child: Text(
+                  'No scanned QR codes yet.',
+                  style: CustomTheme.textTheme(context)
+                      .bodyMedium
+                      ?.copyWith(color: Colors.grey[400]),
+                ),
+              )
             : ListView.builder(
                 itemCount: scannedCodes.length,
                 itemBuilder: (context, index) {

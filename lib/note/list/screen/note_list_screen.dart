@@ -32,49 +32,60 @@ class NoteListScreen extends ConsumerWidget {
       body: Padding(
         padding:
             EdgeInsets.fromLTRB(width * 0.041, height * 0.02, width * 0.041, 0),
-        child: ListView.builder(
-          itemCount: notes.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                context.go(
-                  '/note-detail/$index',
-                  extra: notes[index],
-                );
-              },
-              child: Container(
-                margin: EdgeInsets.only(bottom: height * 0.015),
-                padding: EdgeInsets.all(height * 0.015),
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(8),
+        child: notes.isEmpty
+            ? Center(
+                child: Text(
+                  'No Note generated yet.',
+                  style: CustomTheme.textTheme(context)
+                      .bodyMedium
+                      ?.copyWith(color: Colors.grey[400]),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      notes[index].title.length > 20
-                          ? '${notes[index].title.substring(0, 20)}...' // İlk 20 karakter ve "..."
-                          : notes[index].title, // Tam başlık
-                      style: CustomTheme.textTheme(context)
-                          .bodyMedium
-                          ?.copyWith(color: Colors.black),
+              )
+            : ListView.builder(
+                itemCount: notes.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      context.go(
+                        '/note-detail/$index',
+                        extra: notes[index],
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: height * 0.015),
+                      padding: EdgeInsets.all(height * 0.015),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            notes[index].title.length > 20
+                                ? '${notes[index].title.substring(0, 20)}...' // İlk 20 karakter ve "..."
+                                : notes[index].title, // Tam başlık
+                            style: CustomTheme.textTheme(context)
+                                .bodyMedium
+                                ?.copyWith(color: Colors.black),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () async {
+                              await ref
+                                  .read(noteProvider.notifier)
+                                  .deleteNote(index);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Not silindi!')),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () async {
-                        await ref.read(noteProvider.notifier).deleteNote(index);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Not silindi!')),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
-            );
-          },
-        ),
       ),
     );
   }

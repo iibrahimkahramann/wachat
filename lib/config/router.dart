@@ -4,6 +4,7 @@ import 'package:wadual/emoji/screen/emoji_screen.dart';
 import 'package:wadual/note/note/screen/private_note_screen.dart';
 import 'package:wadual/sticker/screen/sticker_screen.dart';
 import '../home/screen/home_screen.dart';
+import '../onboarding/screen/onboarding_screen.dart';
 import '../private_browser/screen/private_browser.dart';
 import '../qr_generator/detail/screen/qr_code_detail_screen.dart';
 import '../qr_generator/list/screen/qr_code_list_screen.dart';
@@ -105,6 +106,12 @@ final router = GoRouter(
       name: 'scanned qr codes',
       pageBuilder: (context, state) =>
           NoTransitionPage(child: ScannedQRCodesScreen()),
+    ),
+    GoRoute(
+      path: '/onboarding',
+      name: 'onboarding',
+      pageBuilder: (context, state) =>
+          NoTransitionPage(child: OnboardingScreen()),
     ),
   ],
 );

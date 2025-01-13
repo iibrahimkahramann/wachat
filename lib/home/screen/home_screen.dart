@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(
-              width * 0.041, height * 0.025, width * 0.041, 0),
+              width * 0.041, height * 0.01, width * 0.041, 0),
           child: Column(
             children: [
               Container(
@@ -327,6 +327,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: height * 0.015,
               ),
             ],
           ),

@@ -17,8 +17,8 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(
-            width * 0.041, height * 0.025, width * 0.041, 0),
+        padding:
+            EdgeInsets.fromLTRB(width * 0.041, height * 0.01, width * 0.041, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -75,72 +75,101 @@ class SettingsScreen extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.symmetric(
-                horizontal: width * 0.002,
+                horizontal: width * 0.07,
                 vertical: height * 0.01,
               ),
               decoration: BoxDecoration(
                 color: Colors.grey[300],
-                border: Border(
-                  bottom: BorderSide(
-                    color: Colors.grey[300]!,
-                    width: 1.0,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Link(
+                uri: Uri.parse(
+                    'https://sites.google.com/view/instory-privacy-policy-home/ana-sayfa'),
+                builder: (context, followLink) => Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: followLink,
+                    style: TextButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: Text(
+                      'Privacy Policy',
+                      style: CustomTheme.textTheme(context)
+                          .bodyMedium
+                          ?.copyWith(color: Colors.black),
+                      textAlign: TextAlign.left, // Metni sola hizalar
+                    ),
                   ),
                 ),
-                borderRadius: BorderRadius.circular(12.0),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Link(
-                    uri: Uri.parse(
-                        'https://sites.google.com/view/instory-privacy-policy-home/ana-sayfa'),
-                    builder: (context, followLink) => TextButton(
-                      onPressed: followLink,
-                      child: Text(
-                        'Privacy Policy',
-                        style: CustomTheme.textTheme(context)
-                            .bodyMedium
-                            ?.copyWith(color: Colors.black),
-                      ),
+            ),
+            SizedBox(
+              height: height * 0.01,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: width * 0.07,
+                vertical: height * 0.01,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Link(
+                uri: Uri.parse(
+                    'https://sites.google.com/view/instory-privacy-policy-home/ana-sayfa'),
+                builder: (context, followLink) => Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: followLink,
+                    style: TextButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: Text(
+                      'Terms of Use',
+                      style: CustomTheme.textTheme(context)
+                          .bodyMedium
+                          ?.copyWith(color: Colors.black),
+                      textAlign: TextAlign.left, // Metni sola hizalar
                     ),
                   ),
-                  Divider(
-                    color: Colors.grey,
-                    indent: width * 0.02,
-                    endIndent: width * 0.02,
-                  ),
-                  Link(
-                    uri: Uri.parse(
-                        'https://sites.google.com/view/instory-terms-of-use-home/ana-sayfa'),
-                    builder: (context, followLink) => TextButton(
-                      onPressed: followLink,
-                      child: Text(
-                        'Terms of Use',
-                        style: CustomTheme.textTheme(context)
-                            .bodyMedium
-                            ?.copyWith(color: Colors.black),
-                      ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height * 0.01,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: width * 0.07,
+                vertical: height * 0.01,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Link(
+                uri: Uri.parse(
+                    'https://myaccount.google.com/intro/payments-and-subscriptions'),
+                builder: (context, followLink) => Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: followLink,
+                    style: TextButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: Text(
+                      'Subscriptions',
+                      style: CustomTheme.textTheme(context)
+                          .bodyMedium
+                          ?.copyWith(color: Colors.black),
+                      textAlign: TextAlign.left, // Metni sola hizalar
                     ),
                   ),
-                  Divider(
-                    color: Colors.grey,
-                    indent: width * 0.02,
-                    endIndent: width * 0.02,
-                  ),
-                  Link(
-                    uri: Uri.parse(
-                        'https://myaccount.google.com/intro/payments-and-subscriptions'),
-                    builder: (context, followLink) => TextButton(
-                      onPressed: followLink,
-                      child: Text(
-                        'Subscriptions',
-                        style: CustomTheme.textTheme(context)
-                            .bodyMedium
-                            ?.copyWith(color: Colors.black),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],
