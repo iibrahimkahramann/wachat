@@ -1,3 +1,4 @@
+import 'package:adapty_flutter/adapty_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -25,54 +26,80 @@ class SettingsScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (!isPremium)
-              Container(
-                width: width * 0.95,
-                height: height * 0.18,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 52, 168, 83),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  children: [
-                    Lottie.asset(
-                      'assets/icons/premium.json',
-                      width: width * 0.20,
-                    ),
-                    SizedBox(
-                      height: height * 0.0001,
-                    ),
-                    Text(
-                      'Upgrade to Premium',
-                      style: TextStyle(
-                          fontSize: CustomTheme.textTheme(context)
-                              .bodyLarge!
-                              .fontSize,
-                          fontFamily: CustomTheme.textTheme(context)
-                              .bodyLarge!
-                              .fontFamily,
-                          fontWeight: CustomTheme.textTheme(context)
-                              .bodyLarge!
-                              .fontWeight,
-                          color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: height * 0.004,
-                    ),
-                    Text(
-                      'Join us to benefit from privileges',
-                      style: TextStyle(
-                          fontSize: CustomTheme.textTheme(context)
-                              .bodyMedium!
-                              .fontSize,
-                          fontFamily: CustomTheme.textTheme(context)
-                              .bodyMedium!
-                              .fontFamily,
-                          fontWeight: CustomTheme.textTheme(context)
-                              .bodyMedium!
-                              .fontWeight,
-                          color: Colors.white),
-                    )
-                  ],
+              GestureDetector(
+                onTap: () async {
+                  final profile = await Adapty().getProfile();
+                  final isPremium =
+                      profile.accessLevels['premium']?.isActive ?? false;
+
+                  ref
+                      .read(isPremiumProvider.notifier)
+                      .updatePremiumStatus(isPremium);
+
+                  if (isPremium) {
+                    print("Kullanıcı premium, paywall gösterilmeyecek");
+                    return;
+                  }
+
+                  final paywall = await Adapty().getPaywall(
+                    placementId: 'placement-pro',
+                    locale: 'en',
+                  );
+
+                  final view = await AdaptyUI().createPaywallView(
+                    paywall: paywall,
+                  );
+                  await view.present();
+                },
+                child: Container(
+                  width: width * 0.95,
+                  height: height * 0.18,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 52, 168, 83),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      Lottie.asset(
+                        'assets/icons/premium.json',
+                        width: width * 0.20,
+                      ),
+                      SizedBox(
+                        height: height * 0.0001,
+                      ),
+                      Text(
+                        'Upgrade to Premium',
+                        style: TextStyle(
+                            fontSize: CustomTheme.textTheme(context)
+                                .bodyLarge!
+                                .fontSize,
+                            fontFamily: CustomTheme.textTheme(context)
+                                .bodyLarge!
+                                .fontFamily,
+                            fontWeight: CustomTheme.textTheme(context)
+                                .bodyLarge!
+                                .fontWeight,
+                            color: Colors.white),
+                      ),
+                      SizedBox(
+                        height: height * 0.004,
+                      ),
+                      Text(
+                        'Join us to benefit from privileges',
+                        style: TextStyle(
+                            fontSize: CustomTheme.textTheme(context)
+                                .bodyMedium!
+                                .fontSize,
+                            fontFamily: CustomTheme.textTheme(context)
+                                .bodyMedium!
+                                .fontFamily,
+                            fontWeight: CustomTheme.textTheme(context)
+                                .bodyMedium!
+                                .fontWeight,
+                            color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
               ),
             SizedBox(

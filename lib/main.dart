@@ -1,3 +1,4 @@
+import 'package:adapty_flutter/adapty_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,61 +48,49 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  // bool _appIsReady = false;
+  bool _appIsReady = false;
 
   @override
   void initState() {
     super.initState();
 
-    // _initializeAdapty().then((_) {
-    //   setState(() {
-    //     _appIsReady = true;
-    //   });
-    // });
+    _initializeAdapty().then((_) {
+      setState(() {
+        _appIsReady = true;
+      });
+    });
   }
 
-  // Future<void> _initializeAdapty() async {
-  //   try {
-  //     await Adapty().activate(
-  //       configuration: AdaptyConfiguration(
-  //         apiKey: 'public_live_BKkY0JIs.ypcZ5H6S0uLgCBXXv2IU',
-  //       )
-  //         ..withLogLevel(AdaptyLogLevel.verbose)
-  //         ..withObserverMode(false),
-  //     );
+  Future<void> _initializeAdapty() async {
+    try {
+      await Adapty().activate(
+        configuration: AdaptyConfiguration(
+          apiKey: 'public_live_Qk6D5MTR.Vp3iWwsX5dmvj8QAIDmB',
+        )
+          ..withLogLevel(AdaptyLogLevel.verbose)
+          ..withObserverMode(false),
+      );
 
-  //     const mediaCache = AdaptyUIMediaCacheConfiguration(
-  //       memoryStorageTotalCostLimit: 100 * 1024 * 1024,
-  //       memoryStorageCountLimit: 2147483647,
-  //       diskStorageSizeLimit: 100 * 1024 * 1024,
-  //     );
-
-  //     await AdaptyUI().activate(
-  //       configuration: const AdaptyUIConfiguration(mediaCache: mediaCache),
-  //       observer: MyAdaptyUIObserver(context),
-  //     );
-
-  //     print("Adapty SDK başarıyla aktifleştirildi!");
-  //   } catch (e) {
-  //     print("Adapty başlatma hatası: $e");
-  //     setState(() {
-  //       _appIsReady = true;
-  //     });
-  //   }
-  // }
+      print("Adapty SDK başarıyla aktifleştirildi!");
+    } catch (e) {
+      print("Adapty başlatma hatası: $e");
+      setState(() {
+        _appIsReady = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    // if (!_appIsReady) {
-    // return const
-    MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
+    if (!_appIsReady) {
+      return const MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
         ),
-      ),
-    );
-    // }
+      );
+    }
 
     return MaterialApp.router(
       title: 'Wachat',
