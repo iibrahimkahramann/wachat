@@ -46,7 +46,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   if (!isPremium)
                     context.go('/qr-reader');
                   else
-                    context.go('/wachat');
+                    homePaywall();
                 },
                 child: Container(
                   width: width * 0.95,

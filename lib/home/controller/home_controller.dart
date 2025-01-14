@@ -1,3 +1,4 @@
+import 'package:adapty_flutter/adapty_flutter.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,5 +19,18 @@ Future<void> checkAndRequestReview() async {
     } catch (e) {
       print('Error requesting review: $e');
     }
+  }
+}
+
+Future<void> homePaywall() async {
+  final paywall = await Adapty().getPaywall(
+    placementId: 'placement-pro',
+    locale: 'en',
+  );
+  try {
+    final view = await AdaptyUI().createPaywallView(paywall: paywall);
+    await view.present();
+  } catch (e) {
+    print(e);
   }
 }
