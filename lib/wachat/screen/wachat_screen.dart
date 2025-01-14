@@ -38,6 +38,31 @@ class _WachatScreenState extends State<WachatScreen> {
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36',
   );
 
+  // Timer? _timer;
+  // bool isPremium = true;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (!isPremium) {
+  //     _startTimer();
+  //   }
+  // }
+
+  // void _startTimer() {
+  //   _timer = Timer(const Duration(seconds: 10), () {
+  //     if (mounted) {
+  //       GoRouter.of(context).push('/home');
+  //     }
+  //   });
+  // }
+
+  // @override
+  // void dispose() {
+  //   _timer?.cancel();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;

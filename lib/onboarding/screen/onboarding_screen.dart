@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:wadual/config/custom_theme.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -73,16 +74,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    // SharedPreferences prefs =
-                    //     await SharedPreferences.getInstance();
-                    // await prefs.setBool('isFirstLaunch', false);
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    await prefs.setBool('isFirstLaunch', true);
                     context.go('/home');
                   },
                   child: Container(
                     width: width * 0.93,
                     height: height * 0.07,
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Color.fromARGB(255, 52, 168, 83),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(

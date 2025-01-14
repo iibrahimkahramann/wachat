@@ -1,17 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:wadual/home/controller/home_controller.dart';
+import 'package:wadual/providers/premium_provider.dart';
 import 'package:wadual/widgets/custom_appbar.dart';
 import 'package:wadual/widgets/custom_navbar.dart';
 
 import '../../config/custom_theme.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
+  @override
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Future.delayed(const Duration(seconds: 5), () {
+        checkAndRequestReview();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final isPremium = ref.watch(isPremiumProvider);
 
     return Scaffold(
       appBar: CustomAppBar(),
@@ -22,25 +42,30 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               GestureDetector(
-                onTap: () => context.go('/wachat'),
+                onTap: () {
+                  if (!isPremium)
+                    context.go('/qr-reader');
+                  else
+                    context.go('/wachat');
+                },
                 child: Container(
                   width: width * 0.95,
                   height: height * 0.18,
                   decoration: BoxDecoration(
-                    color: Colors.green,
+                    color: Color.fromARGB(255, 52, 168, 83),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(left: width * 0.12),
+                    padding: EdgeInsets.only(left: width * 0.15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Image.asset(
-                          'assets/images/wa_chat.png',
-                          width: width * 0.17,
+                          'assets/logos/app_icon.png',
+                          width: width * 0.2,
                         ),
                         SizedBox(
-                          width: width * 0.05,
+                          width: width * 0.04,
                         ),
                         Text(
                           'WA 2nd Chat',
@@ -54,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                               fontWeight: CustomTheme.textTheme(context)
                                   .bodyLarge!
                                   .fontWeight,
-                              color: Colors.black),
+                              color: Colors.white),
                         ),
                       ],
                     ),
@@ -67,7 +92,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: width * 0.65),
                 child: Text(
-                  'Özellikler',
+                  'Features',
                   style: CustomTheme.textTheme(context)
                       .bodyLarge
                       ?.copyWith(color: Colors.black),
