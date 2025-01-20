@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -26,7 +27,7 @@ class QRGeneratorScreen extends ConsumerWidget {
         title: Padding(
           padding: EdgeInsets.only(left: width * 0.16),
           child: Text(
-            'QR Generator',
+            'QR Generator'.tr(),
             style: CustomTheme.textTheme(context)
                 .bodyLarge
                 ?.copyWith(color: Colors.black),
@@ -52,7 +53,7 @@ class QRGeneratorScreen extends ConsumerWidget {
             TextField(
               controller: controller,
               decoration: InputDecoration(
-                labelText: 'Enter Text',
+                labelText: 'Enter Text'.tr(),
                 labelStyle: TextStyle(
                   fontSize: CustomTheme.textTheme(context).bodyMedium!.fontSize,
                   fontFamily:
@@ -79,7 +80,7 @@ class QRGeneratorScreen extends ConsumerWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Generate QR Code',
+                    'Generate QR Code'.tr(),
                     style: TextStyle(
                         fontSize:
                             CustomTheme.textTheme(context).bodyMedium!.fontSize,

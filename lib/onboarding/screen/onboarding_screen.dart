@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,7 +48,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     horizontal: width * 0.1,
                   ),
                   child: Center(
-                    child: Text('Are you ready?',
+                    child: Text('Are you ready?'.tr(),
                         textAlign: TextAlign.center,
                         style: CustomTheme.textTheme(context)
                             .bodyLarge
@@ -62,7 +63,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                   child: Center(
                     child: Text(
-                        'Add your second WA account now and enjoy the freedom of dual accounts!',
+                        'Add your second WA account now and enjoy the freedom of dual accounts!'
+                            .tr(),
                         textAlign: TextAlign.center,
                         style: CustomTheme.textTheme(context)
                             .bodyMedium
@@ -88,7 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        'Let s start',
+                        'Let s start'.tr(),
                         style: CustomTheme.textTheme(context)
                             .bodyLarge
                             ?.copyWith(color: Colors.white),

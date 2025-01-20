@@ -1,11 +1,13 @@
+import 'package:adapty_flutter/adapty_flutter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:wadual/home/controller/home_controller.dart';
 import 'package:wadual/providers/premium_provider.dart';
-import 'package:wadual/widgets/custom_appbar.dart';
-import 'package:wadual/widgets/custom_navbar.dart';
+import 'package:wadual/bar/custom_appbar.dart';
+import 'package:wadual/bar/custom_navbar.dart';
 
 import '../../config/custom_theme.dart';
 
@@ -16,13 +18,19 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  bool hasSeenPaywall = false;
+
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Future.delayed(const Duration(seconds: 5), () {
-        checkAndRequestReview();
+      Future.delayed(const Duration(seconds: 3), () {
+        if (!hasSeenPaywall) {
+          checkAndRequestReview();
+          homePaywall();
+          hasSeenPaywall = true;
+        }
       });
     });
   }
@@ -42,11 +50,33 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           child: Column(
             children: [
               GestureDetector(
-                onTap: () {
-                  if (!isPremium)
-                    context.go('/qr-reader');
-                  else
-                    homePaywall();
+                onTap: () async {
+                  if (!isPremium) {
+                    final profile = await Adapty().getProfile();
+                    final isPremium =
+                        profile.accessLevels['premium']?.isActive ?? false;
+
+                    ref
+                        .read(isPremiumProvider.notifier)
+                        .updatePremiumStatus(isPremium);
+
+                    if (isPremium) {
+                      print("Kullanıcı premium, paywall gösterilmeyecek");
+                      return;
+                    }
+
+                    final paywall = await Adapty().getPaywall(
+                      placementId: 'placement-pro',
+                      locale: 'en',
+                    );
+
+                    final view = await AdaptyUI().createPaywallView(
+                      paywall: paywall,
+                    );
+                    await view.present();
+                  } else {
+                    context.go('/wachat');
+                  }
                 },
                 child: Container(
                   width: width * 0.95,
@@ -92,7 +122,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               Padding(
                 padding: EdgeInsets.only(right: width * 0.65),
                 child: Text(
-                  'Features',
+                  'Features'.tr(),
                   style: CustomTheme.textTheme(context)
                       .bodyLarge
                       ?.copyWith(color: Colors.black),
@@ -123,7 +153,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           width: width * 0.07,
                         ),
                         Text(
-                          'QR Generator',
+                          'QR Generator'.tr(),
                           style: TextStyle(
                               fontSize: CustomTheme.textTheme(context)
                                   .bodyMedium!
@@ -166,7 +196,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           width: width * 0.07,
                         ),
                         Text(
-                          'QR Reader',
+                          'QR Reader'.tr(),
                           style: TextStyle(
                               fontSize: CustomTheme.textTheme(context)
                                   .bodyMedium!
@@ -209,7 +239,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           width: width * 0.07,
                         ),
                         Text(
-                          'Private Note',
+                          'Private Note'.tr(),
                           style: TextStyle(
                               fontSize: CustomTheme.textTheme(context)
                                   .bodyMedium!
@@ -252,7 +282,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           width: width * 0.07,
                         ),
                         Text(
-                          'Private Browser',
+                          'Private Browser'.tr(),
                           style: TextStyle(
                               fontSize: CustomTheme.textTheme(context)
                                   .bodyMedium!
@@ -295,7 +325,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           width: width * 0.07,
                         ),
                         Text(
-                          'Emojis',
+                          'Emojis'.tr(),
                           style: TextStyle(
                               fontSize: CustomTheme.textTheme(context)
                                   .bodyMedium!
@@ -338,7 +368,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           width: width * 0.07,
                         ),
                         Text(
-                          'Stickers',
+                          'Stickers'.tr(),
                           style: TextStyle(
                               fontSize: CustomTheme.textTheme(context)
                                   .bodyMedium!

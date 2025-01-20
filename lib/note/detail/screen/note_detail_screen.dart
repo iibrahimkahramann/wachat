@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -30,7 +31,7 @@ class NoteDetailScreen extends ConsumerWidget {
           padding:
               EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.17),
           child: Text(
-            'Note Detail',
+            'Note Detail'.tr(),
             style: CustomTheme.textTheme(context)
                 .bodyLarge
                 ?.copyWith(color: Colors.black),
@@ -49,7 +50,7 @@ class NoteDetailScreen extends ConsumerWidget {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  hintText: 'Not Başlığını güncelleyin...',
+                  hintText: 'Update the Note Title...'.tr(),
                   hintStyle: CustomTheme.textTheme(context).bodySmall),
             ),
             SizedBox(height: height * 0.02),
@@ -60,7 +61,7 @@ class NoteDetailScreen extends ConsumerWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                hintText: 'Not metnini güncelleyin...',
+                hintText: 'Update the note text...'.tr(),
                 hintStyle: CustomTheme.textTheme(context)
                     .bodyMedium
                     ?.copyWith(color: Colors.grey[400]),
@@ -70,18 +71,15 @@ class NoteDetailScreen extends ConsumerWidget {
             GestureDetector(
               onTap: () {
                 // Notu güncelle
-                ref
-                    .read(noteProvider.notifier)
-                    .deleteNote(noteIndex); // Önce mevcut notu sil
+                ref.read(noteProvider.notifier).deleteNote(noteIndex);
                 ref.read(noteProvider.notifier).addNote(
                       _titleController.text,
                       _textController.text,
                     );
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                      content: Text('Not güncellendi!')), // Güncelleme mesajı
+                  SnackBar(content: Text('Note updated!'.tr())),
                 );
-                context.go('/note-list'); // Not listesine geri dön
+                context.go('/note-list');
               },
               child: Container(
                 width: width * 0.95,
@@ -92,7 +90,7 @@ class NoteDetailScreen extends ConsumerWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Notu Güncelle',
+                    'Update Note'.tr(),
                     style: CustomTheme.textTheme(context)
                         .bodyMedium
                         ?.copyWith(color: Colors.white),

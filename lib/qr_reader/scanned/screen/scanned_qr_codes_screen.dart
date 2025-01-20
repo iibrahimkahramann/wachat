@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +23,7 @@ class ScannedQRCodesScreen extends ConsumerWidget {
         title: Padding(
           padding: EdgeInsets.only(left: width * 0.1),
           child: Text(
-            'Scanned QR Codes',
+            'Scanned QR Codes'.tr(),
             style: CustomTheme.textTheme(context)
                 .bodyLarge
                 ?.copyWith(color: Colors.black),
@@ -36,7 +37,7 @@ class ScannedQRCodesScreen extends ConsumerWidget {
         child: scannedCodes.isEmpty
             ? Center(
                 child: Text(
-                  'No scanned QR codes yet.',
+                  'No scanned QR codes yet.'.tr(),
                   style: CustomTheme.textTheme(context)
                       .bodyMedium
                       ?.copyWith(color: Colors.grey[400]),
@@ -72,7 +73,7 @@ class ScannedQRCodesScreen extends ConsumerWidget {
                                 .read(qrCodeProvider.notifier)
                                 .removeScannedCode(scannedCodes[index]);
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('QR code deleted!')),
+                              SnackBar(content: Text('QR code deleted!'.tr())),
                             );
                           },
                         ),

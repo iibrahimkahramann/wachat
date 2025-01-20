@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +23,7 @@ class NoteListScreen extends ConsumerWidget {
           padding:
               EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.21),
           child: Text(
-            'Note List',
+            'Note List'.tr(),
             style: CustomTheme.textTheme(context)
                 .bodyLarge
                 ?.copyWith(color: Colors.black),
@@ -36,7 +37,7 @@ class NoteListScreen extends ConsumerWidget {
         child: notes.isEmpty
             ? Center(
                 child: Text(
-                  'No Note generated yet.',
+                  'No Note generated yet.'.tr(),
                   style: CustomTheme.textTheme(context)
                       .bodyMedium
                       ?.copyWith(color: Colors.grey[400]),
@@ -77,7 +78,7 @@ class NoteListScreen extends ConsumerWidget {
                                   .read(noteProvider.notifier)
                                   .deleteNote(index);
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Not silindi!')),
+                                SnackBar(content: Text('Note deleted!'.tr())),
                               );
                             },
                           ),

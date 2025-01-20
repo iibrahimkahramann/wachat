@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,14 +21,14 @@ class CustomNavBar extends StatelessWidget {
             'assets/icons/home.png',
             width: width * 0.06,
           ),
-          label: 'Home',
+          label: 'Home'.tr(),
         ),
         BottomNavigationBarItem(
           icon: Image.asset(
             'assets/icons/setting.png',
             width: width * 0.06,
           ),
-          label: 'Settings',
+          label: 'Settings'.tr(),
         ),
       ],
       currentIndex: _calculateSelectedIndex(currentLocation),

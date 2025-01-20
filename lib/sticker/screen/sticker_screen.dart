@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wadual/config/custom_theme.dart';
@@ -20,7 +21,7 @@ class StickerListScreen extends StatelessWidget {
           padding:
               EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.22),
           child: Text(
-            'Stickers',
+            'Stickers'.tr(),
             style: CustomTheme.textTheme(context)
                 .bodyLarge
                 ?.copyWith(color: Colors.black),

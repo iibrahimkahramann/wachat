@@ -1,10 +1,12 @@
 import 'package:adapty_flutter/adapty_flutter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:lottie/lottie.dart';
 import 'package:wadual/providers/premium_provider.dart';
-import 'package:wadual/widgets/custom_appbar.dart';
-import 'package:wadual/widgets/custom_navbar.dart';
+import 'package:wadual/bar/custom_appbar.dart';
+import 'package:wadual/bar/custom_navbar.dart';
 import 'package:url_launcher/link.dart';
 
 import '../../config/custom_theme.dart';
@@ -68,7 +70,7 @@ class SettingsScreen extends ConsumerWidget {
                         height: height * 0.0001,
                       ),
                       Text(
-                        'Upgrade to Premium',
+                        'Upgrade to Premium'.tr(),
                         style: TextStyle(
                             fontSize: CustomTheme.textTheme(context)
                                 .bodyLarge!
@@ -85,7 +87,7 @@ class SettingsScreen extends ConsumerWidget {
                         height: height * 0.004,
                       ),
                       Text(
-                        'Join us to benefit from privileges',
+                        'Join us to benefit from privileges'.tr(),
                         style: TextStyle(
                             fontSize: CustomTheme.textTheme(context)
                                 .bodyMedium!
@@ -116,7 +118,7 @@ class SettingsScreen extends ConsumerWidget {
               ),
               child: Link(
                 uri: Uri.parse(
-                    'https://sites.google.com/view/instory-privacy-policy-home/ana-sayfa'),
+                    'https://sites.google.com/view/wachat-privacy/ana-sayfa'),
                 builder: (context, followLink) => Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
@@ -135,7 +137,7 @@ class SettingsScreen extends ConsumerWidget {
                           width: width * 0.03,
                         ),
                         Text(
-                          'Privacy Policy',
+                          'Privacy Policy'.tr(),
                           style: CustomTheme.textTheme(context)
                               .bodyMedium
                               ?.copyWith(color: Colors.black),
@@ -161,7 +163,7 @@ class SettingsScreen extends ConsumerWidget {
               ),
               child: Link(
                 uri: Uri.parse(
-                    'https://sites.google.com/view/instory-privacy-policy-home/ana-sayfa'),
+                    'https://sites.google.com/view/wachat-terms/ana-sayfa'),
                 builder: (context, followLink) => Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
@@ -180,7 +182,7 @@ class SettingsScreen extends ConsumerWidget {
                           width: width * 0.03,
                         ),
                         Text(
-                          'Terms of Use',
+                          'Terms of Use'.tr(),
                           style: CustomTheme.textTheme(context)
                               .bodyMedium
                               ?.copyWith(color: Colors.black),
@@ -225,7 +227,7 @@ class SettingsScreen extends ConsumerWidget {
                           width: width * 0.03,
                         ),
                         Text(
-                          'Subscriptions',
+                          'Subscriptions'.tr(),
                           style: CustomTheme.textTheme(context)
                               .bodyMedium
                               ?.copyWith(color: Colors.black),
@@ -234,6 +236,46 @@ class SettingsScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height * 0.01,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: width * 0.02,
+                vertical: height * 0.01,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextButton(
+                onPressed: () async {
+                  final InAppReview inAppReview = InAppReview.instance;
+                  if (await inAppReview.isAvailable()) {
+                    await inAppReview.requestReview();
+                  } else {
+                    print('In-app review is not available');
+                  }
+                },
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/star.png',
+                      width: width * 0.08,
+                    ),
+                    SizedBox(
+                      width: width * 0.03,
+                    ),
+                    Text(
+                      'Rate Us'.tr(),
+                      style: CustomTheme.textTheme(context)
+                          .bodyMedium
+                          ?.copyWith(color: Colors.black),
+                    ),
+                  ],
                 ),
               ),
             ),

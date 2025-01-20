@@ -24,7 +24,7 @@ Future<void> checkAndRequestReview() async {
 
 Future<void> homePaywall() async {
   final paywall = await Adapty().getPaywall(
-    placementId: 'placement-pro',
+    placementId: 'placement-onboarding',
     locale: 'en',
   );
   try {

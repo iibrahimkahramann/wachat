@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -25,7 +26,7 @@ class QRCodeDetailScreen extends StatelessWidget {
         title: Padding(
           padding: EdgeInsets.only(left: width * 0.15),
           child: Text(
-            'QR Code Detail',
+            'QR Code Detail'.tr(),
             style: CustomTheme.textTheme(context)
                 .bodyLarge
                 ?.copyWith(color: Colors.black),
@@ -67,7 +68,7 @@ class QRCodeDetailScreen extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Share',
+                    'Share'.tr(),
                     style: TextStyle(
                       fontSize: 16, // Font boyutunu belirleyin
                       fontWeight: FontWeight.bold,

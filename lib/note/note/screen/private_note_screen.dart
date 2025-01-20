@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,7 +29,7 @@ class PrivateNoteScreen extends ConsumerWidget {
           padding:
               EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.17),
           child: Text(
-            'Private Note',
+            'Private Note'.tr(),
             style: CustomTheme.textTheme(context)
                 .bodyLarge
                 ?.copyWith(color: Colors.black),
@@ -57,7 +58,7 @@ class PrivateNoteScreen extends ConsumerWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                hintText: 'Not Başlığını buraya yazın...',
+                hintText: 'Write the Note Title here...'.tr(),
                 hintStyle: CustomTheme.textTheme(context)
                     .bodyMedium
                     ?.copyWith(color: Colors.grey[400]),
@@ -74,7 +75,7 @@ class PrivateNoteScreen extends ConsumerWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                hintText: 'Notunuzu buraya yazın...',
+                hintText: 'Write your note here...'.tr(),
                 hintStyle: CustomTheme.textTheme(context)
                     .bodyMedium
                     ?.copyWith(color: Colors.grey[400]),
@@ -89,7 +90,8 @@ class PrivateNoteScreen extends ConsumerWidget {
                 if (_title.isNotEmpty && _note.isNotEmpty) {
                   await ref.read(noteProvider.notifier).addNote(_title, _note);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Notunuz kaydedildi!')),
+                    SnackBar(
+                        content: Text('Your grade has been recorded!'.tr())),
                   );
                   _titleController.clear();
                   _noteController.clear();
@@ -104,7 +106,7 @@ class PrivateNoteScreen extends ConsumerWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Notu Kaydet',
+                    'Save Note'.tr(),
                     style: CustomTheme.textTheme(context)
                         .bodyMedium
                         ?.copyWith(color: Colors.white),
