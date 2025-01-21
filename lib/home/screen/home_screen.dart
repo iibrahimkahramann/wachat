@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wadual/firebase/firebase_analytics.dart';
 
 import 'package:wadual/home/controller/home_controller.dart';
 import 'package:wadual/providers/premium_provider.dart';
@@ -25,7 +26,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Future.delayed(const Duration(seconds: 3), () {
+      Future.delayed(const Duration(seconds: 0), () {
         if (!hasSeenPaywall) {
           checkAndRequestReview();
           homePaywall();
@@ -75,6 +76,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     );
                     await view.present();
                   } else {
+                    AnalyticsService.analytics.logEvent(name: 'Wachat Giriş');
                     context.go('/wachat');
                   }
                 },

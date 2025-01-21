@@ -1,21 +1,21 @@
 import 'package:adapty_flutter/adapty_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wadual/config/custom_theme.dart';
 import 'package:wadual/config/router.dart';
+import 'package:wadual/firebase_options.dart';
 import 'package:wadual/init/initialize.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-
-  // await AppTrackingTransparency.requestTrackingAuthorization();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   await EasyLocalization.ensureInitialized();
 
