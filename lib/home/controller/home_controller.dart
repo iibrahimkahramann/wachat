@@ -23,14 +23,19 @@ Future<void> checkAndRequestReview() async {
 }
 
 Future<void> homePaywall() async {
-  final paywall = await Adapty().getPaywall(
-    placementId: 'placement-onboarding',
-    locale: 'en',
-  );
   try {
-    final view = await AdaptyUI().createPaywallView(paywall: paywall);
+    final paywall = await Adapty().getPaywall(
+      placementId: 'placement-onboarding',
+      locale: 'en',
+    );
+
+    final view = await AdaptyUI().createPaywallView(
+      paywall: paywall,
+    );
     await view.present();
+  } on AdaptyError catch (e) {
+    print("Adapty hatası: $e");
   } catch (e) {
-    print(e);
+    print("Beklenmeyen hata: $e");
   }
 }

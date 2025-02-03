@@ -67,11 +67,13 @@ class MyAppState extends State<MyApp> {
     try {
       await Adapty().activate(
         configuration: AdaptyConfiguration(
-          apiKey: 'public_live_Qk6D5MTR.Vp3iWwsX5dmvj8QAIDmB',
+          apiKey: 'public_live_BKkY0JIs.ypcZ5H6S0uLgCBXXv2IU',
         )
           ..withLogLevel(AdaptyLogLevel.verbose)
           ..withObserverMode(false),
       );
+
+      AdaptyUI().setObserver(MyAdaptyUIObserver(context));
 
       print("Adapty SDK başarıyla aktifleştirildi!");
     } catch (e) {
