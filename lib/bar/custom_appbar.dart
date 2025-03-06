@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wadual/config/custom_theme.dart';
 
 class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -11,7 +12,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
 
     return Container(
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: Color.fromARGB(255, 242, 242, 242),
       ),
       child: SafeArea(
         child: SizedBox(
@@ -20,7 +21,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: height * 0.02,
+                  horizontal: width * 0.035,
                 ),
                 child: Image.asset(
                   'assets/logos/logo.png',

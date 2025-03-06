@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:lottie/lottie.dart';
 import 'package:wadual/providers/premium_provider.dart';
 import 'package:wadual/bar/custom_appbar.dart';
 import 'package:wadual/bar/custom_navbar.dart';
@@ -28,81 +27,99 @@ class SettingsScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (!isPremium)
-              GestureDetector(
-                onTap: () async {
-                  final profile = await Adapty().getProfile();
-                  final isPremium =
-                      profile.accessLevels['premium']?.isActive ?? false;
-
-                  ref
-                      .read(isPremiumProvider.notifier)
-                      .updatePremiumStatus(isPremium);
-
-                  if (isPremium) {
-                    print("Kullanıcı premium, paywall gösterilmeyecek");
-                    return;
-                  }
-
-                  final paywall = await Adapty().getPaywall(
-                    placementId: 'placement-pro',
-                    locale: 'en',
-                  );
-
-                  final view = await AdaptyUI().createPaywallView(
-                    paywall: paywall,
-                  );
-                  await view.present();
-                },
-                child: Container(
-                  width: width * 0.95,
-                  height: height * 0.18,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 52, 168, 83),
-                    borderRadius: BorderRadius.circular(12),
+              Stack(
+                children: [
+                  Container(
+                    height: height * 0.31,
+                    width: width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Image.asset('assets/images/home_background.png'),
                   ),
-                  child: Column(
-                    children: [
-                      Lottie.asset(
-                        'assets/icons/premium.json',
-                        width: width * 0.20,
-                      ),
-                      SizedBox(
-                        height: height * 0.0001,
-                      ),
-                      Text(
-                        'Upgrade to Premium'.tr(),
-                        style: TextStyle(
-                            fontSize: CustomTheme.textTheme(context)
-                                .bodyLarge!
-                                .fontSize,
-                            fontFamily: CustomTheme.textTheme(context)
-                                .bodyLarge!
-                                .fontFamily,
-                            fontWeight: CustomTheme.textTheme(context)
-                                .bodyLarge!
-                                .fontWeight,
-                            color: Colors.white),
-                      ),
-                      SizedBox(
-                        height: height * 0.004,
-                      ),
-                      Text(
-                        'Join us to benefit from privileges'.tr(),
-                        style: TextStyle(
-                            fontSize: CustomTheme.textTheme(context)
-                                .bodyMedium!
-                                .fontSize,
-                            fontFamily: CustomTheme.textTheme(context)
-                                .bodyMedium!
-                                .fontFamily,
-                            fontWeight: CustomTheme.textTheme(context)
-                                .bodyMedium!
-                                .fontWeight,
-                            color: Colors.white),
-                      )
-                    ],
+                  Padding(
+                    padding: EdgeInsets.only(top: height * 0.02),
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Image.asset(
+                            'assets/logos/home_logo.png',
+                            width: width * 0.17,
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.005,
+                        ),
+                        Text(
+                          'Web Messanger',
+                          style: CustomTheme.textTheme(context).bodyLarge,
+                        ),
+                        SizedBox(
+                          height: height * 0.005,
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.1),
+                          child: Text(
+                              'Join us to enjoy Premium Features and Privileges'
+                                  .tr(),
+                              textAlign: TextAlign.center,
+                              style: CustomTheme.textTheme(context).bodyMedium),
+                        ),
+                        SizedBox(
+                          height: height * 0.015,
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            if (!isPremium) {
+                              final profile = await Adapty().getProfile();
+                              final isPremium =
+                                  profile.accessLevels['premium']?.isActive ??
+                                      false;
+
+                              ref
+                                  .read(isPremiumProvider.notifier)
+                                  .updatePremiumStatus(isPremium);
+
+                              if (isPremium) {
+                                print(
+                                    "Kullanıcı premium, paywall gösterilmeyecek");
+                                return;
+                              }
+
+                              final paywall = await Adapty().getPaywall(
+                                placementId: 'placement-pro',
+                                locale: 'en',
+                              );
+
+                              final view = await AdaptyUI().createPaywallView(
+                                paywall: paywall,
+                              );
+                              await view.present();
+                            }
+                          },
+                          child: Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width * 0.05),
+                            child: Container(
+                              height: height * 0.06,
+                              width: width,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Color.fromARGB(255, 37, 211, 102)),
+                              child: Center(
+                                child: Text('Upgrade to Premium'.tr(),
+                                    style: CustomTheme.textTheme(context)
+                                        .bodyMedium
+                                        ?.copyWith(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             SizedBox(
               height: height * 0.02,
@@ -113,7 +130,7 @@ class SettingsScreen extends ConsumerWidget {
                 vertical: height * 0.01,
               ),
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Link(
@@ -158,7 +175,7 @@ class SettingsScreen extends ConsumerWidget {
                 vertical: height * 0.01,
               ),
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Link(
@@ -203,7 +220,7 @@ class SettingsScreen extends ConsumerWidget {
                 vertical: height * 0.01,
               ),
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Link(
@@ -248,7 +265,7 @@ class SettingsScreen extends ConsumerWidget {
                 vertical: height * 0.01,
               ),
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: TextButton(

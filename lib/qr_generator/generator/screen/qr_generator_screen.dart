@@ -25,7 +25,7 @@ class QRGeneratorScreen extends ConsumerWidget {
           onPressed: () => GoRouter.of(context).go('/home'),
         ),
         title: Padding(
-          padding: EdgeInsets.only(left: width * 0.16),
+          padding: EdgeInsets.only(left: width * 0.1),
           child: Text(
             'QR Generator'.tr(),
             style: CustomTheme.textTheme(context)
@@ -75,7 +75,7 @@ class QRGeneratorScreen extends ConsumerWidget {
                 width: width * 0.95,
                 height: height * 0.07,
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color.fromARGB(255, 37, 211, 102),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(

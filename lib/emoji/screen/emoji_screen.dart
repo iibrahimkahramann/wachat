@@ -40,7 +40,7 @@ class EmojiListScreen extends StatelessWidget {
               margin: EdgeInsets.only(bottom: height * 0.015),
               padding: EdgeInsets.all(height * 0.015),
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(

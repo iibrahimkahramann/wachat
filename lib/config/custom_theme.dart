@@ -14,13 +14,12 @@ class CustomTheme {
         fontSize: width * 0.040,
         fontWeight: FontWeight.bold,
         color: Colors.black,
-        fontFamily: '',
       ),
       bodySmall: TextStyle(
         fontSize: width * 0.030,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w600,
         color: Colors.black,
-        fontFamily: 'Poppins',
+        fontFamily: '',
       ),
     );
   }
@@ -29,7 +28,7 @@ class CustomTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: Color.fromARGB(255, 242, 242, 242),
       textTheme: textTheme(context),
     );
   }

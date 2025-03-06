@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wadual/emoji/screen/emoji_screen.dart';
+import 'package:wadual/home/screen/home_screeen.dart';
 import 'package:wadual/note/note/screen/private_note_screen.dart';
 import 'package:wadual/sticker/screen/sticker_screen.dart';
 import 'package:wadual/wachat/screen/wachat_screen.dart';
@@ -33,7 +34,7 @@ final router = GoRouter(
       path: '/home',
       name: 'home',
       pageBuilder: (context, state) =>
-          const NoTransitionPage(child: HomeScreen()),
+          const NoTransitionPage(child: HomeScreeen()),
     ),
     GoRoute(
       path: '/settings',
