@@ -5,7 +5,6 @@ import 'package:wadual/home/screen/home_screeen.dart';
 import 'package:wadual/note/note/screen/private_note_screen.dart';
 import 'package:wadual/sticker/screen/sticker_screen.dart';
 import 'package:wadual/wachat/screen/wachat_screen.dart';
-import '../home/screen/home_screen.dart';
 import '../onboarding/screen/onboarding_screen.dart';
 import '../private_browser/screen/private_browser.dart';
 import '../qr_generator/detail/screen/qr_code_detail_screen.dart';

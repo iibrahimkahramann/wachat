@@ -1,4 +1,5 @@
 import 'package:adapty_flutter/adapty_flutter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -81,7 +82,8 @@ class _HomeScreeenState extends ConsumerState<HomeScreeen> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: width * 0.1),
                         child: Text(
-                            'Login to your Web Messanger second account with Wachat',
+                            'Login to your Web Messanger second account with Wachat'
+                                .tr(),
                             textAlign: TextAlign.center,
                             style: CustomTheme.textTheme(context).bodyMedium),
                       ),
@@ -131,7 +133,7 @@ class _HomeScreeenState extends ConsumerState<HomeScreeen> {
                                 borderRadius: BorderRadius.circular(30),
                                 color: Color.fromARGB(255, 37, 211, 102)),
                             child: Center(
-                              child: Text('Open Web Messenger',
+                              child: Text('Open Web Messenger'.tr(),
                                   style: CustomTheme.textTheme(context)
                                       .bodyMedium
                                       ?.copyWith(color: Colors.white)),
@@ -148,7 +150,7 @@ class _HomeScreeenState extends ConsumerState<HomeScreeen> {
               padding: EdgeInsets.symmetric(
                   vertical: height * 0.005, horizontal: width * 0.04),
               child: Text(
-                'FEATURES',
+                'FEATURES'.tr(),
                 style: CustomTheme.textTheme(context)
                     .bodyLarge
                     ?.copyWith(fontFamily: ''),
@@ -180,11 +182,11 @@ class _HomeScreeenState extends ConsumerState<HomeScreeen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'QR Generator',
+                            'QR Generator'.tr(),
                             style: CustomTheme.textTheme(context).bodyLarge,
                           ),
                           Text(
-                            'Generate QR code',
+                            'Generate QR code'.tr(),
                             style: CustomTheme.textTheme(context)
                                 .bodyMedium
                                 ?.copyWith(color: Colors.black.withAlpha(160)),
@@ -227,11 +229,11 @@ class _HomeScreeenState extends ConsumerState<HomeScreeen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'QR Scanner',
+                            'QR Scanner'.tr(),
                             style: CustomTheme.textTheme(context).bodyLarge,
                           ),
                           Text(
-                            'Scan your QR codes',
+                            'Scan your QR codes'.tr(),
                             style: CustomTheme.textTheme(context)
                                 .bodyMedium
                                 ?.copyWith(color: Colors.black.withAlpha(160)),
@@ -274,11 +276,11 @@ class _HomeScreeenState extends ConsumerState<HomeScreeen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Privacy Notes',
+                            'Private Note'.tr(),
                             style: CustomTheme.textTheme(context).bodyLarge,
                           ),
                           Text(
-                            'Keep a secret note',
+                            'Keep a secret note'.tr(),
                             style: CustomTheme.textTheme(context)
                                 .bodyMedium
                                 ?.copyWith(color: Colors.black.withAlpha(160)),
@@ -321,11 +323,11 @@ class _HomeScreeenState extends ConsumerState<HomeScreeen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Privacy Browser',
+                            'Private Browser'.tr(),
                             style: CustomTheme.textTheme(context).bodyLarge,
                           ),
                           Text(
-                            'Use Incognito Browser',
+                            'Use Incognito Browser'.tr(),
                             style: CustomTheme.textTheme(context)
                                 .bodyMedium
                                 ?.copyWith(color: Colors.black.withAlpha(160)),
@@ -368,11 +370,11 @@ class _HomeScreeenState extends ConsumerState<HomeScreeen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Emojis',
+                            'Emojis'.tr(),
                             style: CustomTheme.textTheme(context).bodyLarge,
                           ),
                           Text(
-                            'More Emoji',
+                            'More Emoji'.tr(),
                             style: CustomTheme.textTheme(context)
                                 .bodyMedium
                                 ?.copyWith(color: Colors.black.withAlpha(160)),
@@ -415,11 +417,11 @@ class _HomeScreeenState extends ConsumerState<HomeScreeen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Stickers',
+                            'Sticker'.tr(),
                             style: CustomTheme.textTheme(context).bodyLarge,
                           ),
                           Text(
-                            'More Sricker',
+                            'More Sticker'.tr(),
                             style: CustomTheme.textTheme(context)
                                 .bodyMedium
                                 ?.copyWith(color: Colors.black.withAlpha(160)),
